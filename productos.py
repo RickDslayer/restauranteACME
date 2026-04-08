@@ -1,4 +1,7 @@
-productos = {}
+productos = {
+    1 : {"nombre": "papas", "valor_unitario": 12, "iva" : 0.19},
+    2 : {"nombre": "coca", "valor_unitario": 15, "iva" : 0.19}
+}
 
 #crea el producto
 def crear_producto(codigo, nombre, valor_unitario, iva):
@@ -9,13 +12,13 @@ def crear_producto(codigo, nombre, valor_unitario, iva):
 
 #lista todos los productos
 def listar_productos():
-    for valor in productos.values():
-        print(valor)
+    for clave,valor in productos.items():
+        print(clave,valor)
 
 #lista el producto del codigo especifico
 def buscar_productos(codigo):
     if codigo in productos:
-        print(productos[codigo])
+        return productos[codigo]
     else:
         print("no existe el producto con el codigo registrado")
 
@@ -35,3 +38,4 @@ def editar_producto(codigo,newNombre,newValor_unitario,newIva):
     else:
         print(f"el producto con codigo: {codigo} no se encuentra")
 
+#listar_productos()
