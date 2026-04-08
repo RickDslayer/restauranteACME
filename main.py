@@ -35,5 +35,12 @@ while True:
                         print(ve)
                     clientes.crearClientes(Id,Nombre,Telefono,Correo)
                     break
+            case 4:
+                print("facturacion")
+            case 5:
+                print("reporte de ventas")
+            case 0:
+                print("adios")
+                break
     except ValueError:
             print("ERROR de valor (solo numeros)")       
