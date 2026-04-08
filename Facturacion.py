@@ -8,6 +8,7 @@ hora = fecha_completa.time()
 #print (f"{fecha}\n{hora}")
 facturas = {}
 contador = 0
+total = 0
 def  Facturacion():
     while True:
         global contador 
@@ -18,10 +19,12 @@ def  Facturacion():
         cliente = c.buscar_cliente(codgio_cliente)
         lista_productos = []
         while True:
+            global total
             codigo_producto = int(input("ingrese el codigo del prodcto que desea ingresar: "))
             cantidad = int(input("ingrese la cantidad que desea: "))
             producto = p.buscar_productos(codigo_producto)
             subtotal = (producto["valor_unitario"]+cantidad)*producto["iva"]
+            total += subtotal
             if producto:
                 lista_productos.append({
                     "nombre":producto["nombre"],
@@ -33,8 +36,24 @@ def  Facturacion():
             continuar = input("desea seguir agregando otro producto? (s/n): ")
             if continuar.lower() != "s":
                 break
-        facturas[contador] = {"fecha": fecha,"mesa" : mesa,"cliente": cliente,"productos": lista_productos}
-        print(facturas)   
+        facturas[contador] = {"fecha": fecha,"mesa" : mesa,"cliente": cliente,"productos": lista_productos, "total": total}
+        print("\n========== FACTURA ==========")
+        print(f"Factura N°: {contador}")
+        print(f"Fecha: {fecha}")
+        print(f"Mesa: {mesa}")
+        print(f"Cliente: {cliente}")
+        print("-----------------------------")
+        print("Productos:")
+
+        for prod in lista_productos:
+            print(f"- {prod['nombre']}")
+            print(f"  Cantidad: {prod['cantidad']}")
+            print(f"  Valor unitario: {prod['valor_unitario']}")
+            print(f"  Subtotal: {prod['subtotal']}")
+            print("-----------------------------")
+
+        print(f"TOTAL A PAGAR: {total}")
+        print("========== FIN ==========\n")   
         break
 Facturacion()
 
