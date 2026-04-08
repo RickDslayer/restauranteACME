@@ -20,7 +20,7 @@ def  Facturacion():
         lista_productos = []
         while True:
             global total
-            codigo_producto = int(input("ingrese el codigo del prodcto que desea ingresar: "))
+            codigo_producto = int(input("ingrese el codigo del producto que desea ingresar: "))
             cantidad = int(input("ingrese la cantidad que desea: "))
             producto = p.buscar_productos(codigo_producto)
             subtotal = (producto["valor_unitario"]+cantidad)*producto["iva"]
@@ -53,7 +53,7 @@ def  Facturacion():
             print("-----------------------------")
 
         print(f"TOTAL A PAGAR: {total}")
-        print("========== FIN ==========\n")   
+        print("========== FIN ==========\n")     
         break
 
 
