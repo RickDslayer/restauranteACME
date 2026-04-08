@@ -7,10 +7,13 @@ def crear_mesas(codigo, nombre,puestos):
                 print(f"{codigo}: {mesas[codigo]}")
             else:
                 mesas[codigo] = (nombre,puestos)
+<<<<<<< HEAD
 #mesa_codigo = int(input("Dime el codigo:\n"))
 #nombre = input("Dime el nombre de la mesa:\n")
 #puestos = int(input("Dime el numero de puestos:\n"))
 #crear_mesas(mesa_codigo,nombre,puestos)
+=======
+>>>>>>> 43d3b5724422258299e8b958b4f4e22823314e65
 def lista_mesas():
     for codigo, valores in mesas.items():
         nom, pues = valores
@@ -28,6 +31,7 @@ def editar_mesa(codigo):
             nuevo_puesto = int(input("Dime cuantos puestos:\n"))
             mesas[codigo] = nuevo_nombre, nuevo_puesto
       else:
+<<<<<<< HEAD
             print("No se encuentra la mesa")
 def facturacion(mesa,cliente):
        if mesa in mesas:
@@ -44,3 +48,6 @@ def buscar_mesa(codigo):
             return mesas[codigo]["nombre"]
       else:
             print("no existe una mesa con ese codigo")
+=======
+            print("No se encuentra la mesa")
+>>>>>>> 43d3b5724422258299e8b958b4f4e22823314e65
