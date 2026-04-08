@@ -5,10 +5,6 @@ def crear_mesas(codigo, nombre,puestos):
                 print(f"{codigo}: {mesas[codigo]}")
             else:
                 mesas[codigo] = (nombre,puestos)
-mesa_codigo = int(input("Dime el codigo:\n"))
-nombre = input("Dime el nombre de la mesa:\n")
-puestos = int(input("Dime el numero de puestos:\n"))
-crear_mesas(mesa_codigo,nombre,puestos)
 def lista_mesas():
     for codigo, valores in mesas.items():
         nom, pues = valores
@@ -27,12 +23,3 @@ def editar_mesa(codigo):
             mesas[codigo] = nuevo_nombre, nuevo_puesto
       else:
             print("No se encuentra la mesa")
-def facturacion(mesa,cliente):
-       if mesa in mesas:
-             print("")
-lista_mesas()
-a = input("D")
-editar_mesa(a)
-lista_mesas()
-#editar_mesa()
-#eliminar_mesa(mesa_codigo)
