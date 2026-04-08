@@ -7,7 +7,6 @@ def crearClientes (C,name, tel, email):
         for n , t , e in Clientes.values():
             print(f"Informacion del cliente:\nNombre = {n}\nCedula = {C}\nTelefono = {t}\nCorreo = {e}\n")      
     else:
-<<<<<<< HEAD
         Clientes[C]= {"nombre": name , "tel": tel ,"email": email}
     while True:
         try :
@@ -29,13 +28,6 @@ def crearClientes (C,name, tel, email):
             break
         except ValueError as ve:
             print(ve)
-=======
-        Clientes[C]= (name , tel , email)
-
-        
-        
-        
->>>>>>> 43d3b5724422258299e8b958b4f4e22823314e65
         
 def buscar_cliente(codigo):
     if codigo in Clientes:
