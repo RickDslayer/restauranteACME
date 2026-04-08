@@ -1,6 +1,7 @@
 import productos
 import mesas
 import clientes
+import Facturacion
 while True:
     try:
         print("--------------Menu---------------")
@@ -36,7 +37,7 @@ while True:
                     clientes.crearClientes(Id,Nombre,Telefono,Correo)
                     break
             case 4:
-                print("facturacion")
+                Facturacion.Facturacion()
             case 5:
                 print("reporte de ventas")
             case 0:
