@@ -36,6 +36,8 @@ def  Facturacion():
             continuar = input("desea seguir agregando otro producto? (s/n): ")
             if continuar.lower() != "s":
                 break
+            else:
+                print ("digite solo (s/n)")
         facturas[contador] = {"fecha": fecha,"mesa" : mesa,"cliente": cliente,"productos": lista_productos, "total": total}
         print("\n========== FACTURA ==========")
         print(f"Factura N°: {contador}")
@@ -53,7 +55,14 @@ def  Facturacion():
             print("-----------------------------")
 
         print(f"TOTAL A PAGAR: {total}")
-        print("========== FIN ==========\n")     
-        break
+        seguro = input ("¿Desea guardar registro de la factura? (s/n)")
+        if seguro.lower() == "s":
+            with open ("Factura.txt", "w") as f :
+                f.write (f"========== FACTURA ==========\nFactura N°: {contador}\nFecha: {fecha}\nMesa: {mesa}\nCliente: {cliente}\n-----------------------------\n\nProductos\n- {prod['nombre']}\n- Cantidad: {prod['cantidad']}\n- Valor unitario: {prod['valor_unitario']}\n- Subtotal: {prod['subtotal']}\n-----------------------------\nTOTAL A PAGAR: {total}\n-----------------------------")
+            print("========== FIN ==========\n")    
+            break
+        else:
+            print ("digite solo (s/n)")
+        
 
 

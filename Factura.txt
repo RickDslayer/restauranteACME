@@ -1,0 +1,15 @@
+========== FACTURA ==========
+Factura N°: 1
+Fecha: 2026-04-08
+Mesa: mesa 1
+Cliente: yisus
+-----------------------------
+
+Productos
+- papas
+- Cantidad: 1
+- Valor unitario: 12
+- Subtotal: 2.47
+-----------------------------
+TOTAL A PAGAR: 5.32
+-----------------------------
