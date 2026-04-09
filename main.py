@@ -39,7 +39,7 @@ while True:
             case 4:
                 Facturacion.Facturacion()
             case 5:
-                print("reporte de ventas")
+                Facturacion.reporte_de_ventas()
             case 0:
                 print("adios")
                 break

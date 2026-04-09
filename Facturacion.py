@@ -2,6 +2,7 @@ from datetime import datetime
 import productos as p
 import mesas as m
 import clientes as c
+import csv
 fecha_completa = datetime.now()
 fecha = fecha_completa.date()
 hora = fecha_completa.time()
@@ -34,10 +35,11 @@ def  Facturacion():
                     "subtotal":subtotal
                 })
             continuar = input("desea seguir agregando otro producto? (s/n): ")
-            if continuar.lower() != "s":
+            if continuar.lower() == "n":
                 break
-            else:
-                print ("digite solo (s/n)")
+            elif continuar.lower() != "s":
+                print("Opción inválida. Por favor ingrese 's' o 'n'.")
+
         facturas[contador] = {"fecha": fecha,"mesa" : mesa,"cliente": cliente,"productos": lista_productos, "total": total}
         print("\n========== FACTURA ==========")
         print(f"Factura N°: {contador}")
@@ -57,12 +59,126 @@ def  Facturacion():
         print(f"TOTAL A PAGAR: {total}")
         seguro = input ("¿Desea guardar registro de la factura? (s/n)")
         if seguro.lower() == "s":
-            with open ("Factura.txt", "w") as f :
-                f.write (f"========== FACTURA ==========\nFactura N°: {contador}\nFecha: {fecha}\nMesa: {mesa}\nCliente: {cliente}\n-----------------------------\n\nProductos\n- {prod['nombre']}\n- Cantidad: {prod['cantidad']}\n- Valor unitario: {prod['valor_unitario']}\n- Subtotal: {prod['subtotal']}\n-----------------------------\nTOTAL A PAGAR: {total}\n-----------------------------")
+            nombre_archivo = f"Factura_{contador}.txt"
+            with open (nombre_archivo, "w") as f :
+                f.write("========== FACTURA ==========\n")
+                f.write(f"Factura N#: {contador}\n")
+                f.write(f"Fecha: {fecha}\n")
+                f.write(f"Mesa: {mesa}\n")
+                f.write(f"Cliente: {cliente}\n")
+                f.write("-----------------------------\n")
+                f.write("Productos:\n")
+                f.write(f"- {prod['nombre']}\n")
+                f.write(f"  Cantidad: {prod['cantidad']}\n")
+                f.write(f"  Valor unitario: {prod['valor_unitario']}\n")
+                f.write(f"  Subtotal: {prod['subtotal']}\n")
+                f.write("-----------------------------\n")
+                f.write(f"TOTAL A PAGAR: {total}\n")
+                f.write("-----------------------------\n")
             print("========== FIN ==========\n")    
             break
+        elif seguro.lower() == "n":
+            print("Factura no guardada.")
+            break
         else:
-            print ("digite solo (s/n)")
+            print("Opción inválida. Por favor ingrese 's' o 'n'.")
         
+
+def reporte_de_ventas():
+    
+    # Pedir fecha al usuario
+    fecha_str = input("Ingrese la fecha del reporte (YYYY-MM-DD): ")
+    try:
+        fecha_reporte = datetime.strptime(fecha_str, "%Y-%m-%d").date()
+    except ValueError:
+        print("Formato de fecha inválido. Use YYYY-MM-DD")
+        return
+    
+    # Filtrar facturas por fecha
+    facturas_filtradas = {}
+    for clave, valor in facturas.items():
+        if valor["fecha"] == fecha_reporte:
+            facturas_filtradas[clave] = valor
+    
+    if not facturas_filtradas:
+        print(f"No hay facturas registradas para la fecha {fecha_reporte}")
+        return
+    
+    # Agrupar por mesa y calcular totales
+    reporte_mesas = {}
+    for factura_num, factura in facturas_filtradas.items():
+        mesa_nombre = factura["mesa"]
+        if mesa_nombre not in reporte_mesas:
+            reporte_mesas[mesa_nombre] = {
+                "cantidad_productos": 0,
+                "subtotal_bruto": 0,
+                "subtotal_iva": 0,
+                "subtotal": 0
+            }
+        
+        for prod in factura["productos"]:
+            reporte_mesas[mesa_nombre]["cantidad_productos"] += prod["cantidad"]
+            valor_bruto = prod["valor_unitario"] * prod["cantidad"]
+            reporte_mesas[mesa_nombre]["subtotal_bruto"] += valor_bruto
+            iva_prod = valor_bruto * prod["iva"]
+            reporte_mesas[mesa_nombre]["subtotal_iva"] += iva_prod
+            reporte_mesas[mesa_nombre]["subtotal"] += valor_bruto + iva_prod
+    
+    # Mostrar reporte en pantalla
+    print("\n" + "="*100)
+    print(f"REPORTE DE VENTAS - Fecha: {fecha_reporte}")
+    print("="*100)
+    print("Mesa Productos Subtotal Bruto Subtotal IVA Subtotal")
+    print("-"*100)
+    
+    total_bruto = 0
+    total_iva = 0
+    total_ventas = 0
+    
+    for mesa, datos in reporte_mesas.items():
+        print(f"{mesa} {datos['cantidad_productos']} ${datos['subtotal_bruto']} ${datos['subtotal_iva']} ${datos['subtotal']}")
+        total_bruto += datos['subtotal_bruto']
+        total_iva += datos['subtotal_iva']
+        total_ventas += datos['subtotal']
+    
+    print("-"*100)
+    print(f"TOTAL VENTA BRUTA ${total_bruto}")
+    print(f"TOTAL IVA ${total_iva}")
+    print(f"TOTAL VENTAS ${total_ventas}")
+    print("="*100)
+    
+    # Preguntar si imprimir a CSV
+    imprimir = input("\n¿Desea imprimir el reporte en CSV? (s/n): ")
+    if imprimir.lower() == "s":
+        nombre_archivo = f"Reporte_Ventas_{fecha_reporte}.csv"
+        try:
+            with open(nombre_archivo, "w", newline="") as f:
+                writer = csv.writer(f)
+                writer.writerow(["REPORTE DE VENTAS"])
+                writer.writerow([f"Fecha: {fecha_reporte}"])
+                writer.writerow([])
+                writer.writerow(["Mesa", "Cantidad Productos", "Subtotal Bruto", "Subtotal IVA", "Subtotal"])
+                
+                for mesa, datos in reporte_mesas.items():
+                    writer.writerow([
+                        mesa, 
+                        datos['cantidad_productos'], 
+                        datos['subtotal_bruto'], 
+                        datos['subtotal_iva'], 
+                        datos['subtotal']
+                    ])
+                
+                writer.writerow([])
+                writer.writerow(["TOTAL VENTA BRUTA", "", total_bruto])
+                writer.writerow(["TOTAL IVA", "", total_iva])
+                writer.writerow(["TOTAL VENTAS", "", total_ventas])
+            
+            print(f"Reporte guardado en: {nombre_archivo}")
+        except Exception as e:
+            print(f"Error al guardar el archivo: {e}")
+    elif imprimir.lower() == "n":
+        print("Reporte no guardado en archivo.")
+    else:
+        print("Opción inválida. Por favor ingrese 's' o 'n'.")
 
 
