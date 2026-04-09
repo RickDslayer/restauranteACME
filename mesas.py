@@ -41,7 +41,7 @@ def editar_mesa(codigo):
 
 def buscar_mesa(codigo):
       if codigo in mesas:
-            return mesas[codigo]["nombre"]
+            return mesas[codigo]
       else:
             print("no existe una mesa con ese codigo")
             print("No se encuentra la mesa")
