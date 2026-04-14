@@ -1,14 +1,20 @@
+import csv
 productos = {
-    1 : {"nombre": "papas", "valor_unitario": 12, "iva" : 0.19},
-    2 : {"nombre": "coca", "valor_unitario": 15, "iva" : 0.19}
+  
 }
 
 #crea el producto
 def crear_producto(codigo, nombre, valor_unitario, iva):
-    if codigo in productos:
-        print("ya existe un producto con ese codigo")
-    else:
-        productos[codigo] = {"nombre": nombre, "valor_unitario": valor_unitario, "iva": iva}
+    with open ("productos.csv", "r") as f :
+        contenido = f.readlines()
+        linea = linea.strip().slip(',')
+        for linea in contenido:
+            if codigo and codigo [0] in linea:
+                print("ya existe un producto con ese codigo")
+            else:
+                with open ("productos.csv", "a") as f : 
+
+                    productos[codigo] = {"nombre": nombre, "valor_unitario": valor_unitario, "iva": iva}
 
 #lista todos los productos
 def listar_productos():

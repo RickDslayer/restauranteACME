@@ -24,7 +24,7 @@ def  Facturacion():
             codigo_producto = int(input("ingrese el codigo del producto que desea ingresar: "))
             cantidad = int(input("ingrese la cantidad que desea: "))
             producto = p.buscar_productos(codigo_producto)
-            subtotal = (producto["valor_unitario"]+(producto["iva"]/100))*cantidad
+            subtotal = (producto["valor_unitario"]+cantidad)*producto["iva"]
             total += subtotal
             if producto:
                 lista_productos.append({
