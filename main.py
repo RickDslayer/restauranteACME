@@ -12,7 +12,7 @@ while True:
                 producto_codigo = int(input("Ingrese el codigo del nuevo producto (solo numeros):\n"))
                 producto_nombre = input("Ingrese el nombre:\n")
                 producto_valor_unitario = int(input("Ingrese el valor unitario (solo numeros):\n"))
-                producto_iva = int(input("Ingrese el valor del iva (soo numeros):\n"))
+                producto_iva = int(input("Ingrese el valor del iva (solo numeros):\n"))
                 productos.crear_producto(producto_codigo,producto_nombre,producto_valor_unitario,producto_iva)
             case 2:
                 mesa_codigo = int(input("Ingresa el codigo del la nueva mesa (solo numeros):\n"))

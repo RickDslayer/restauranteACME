@@ -24,7 +24,7 @@ def  Facturacion():
             codigo_producto = int(input("ingrese el codigo del producto que desea ingresar: "))
             cantidad = int(input("ingrese la cantidad que desea: "))
             producto = p.buscar_productos(codigo_producto)
-            subtotal = (producto["valor_unitario"]+cantidad)*producto["iva"]
+            subtotal = (producto["valor_unitario"]+(producto["iva"]/100))*cantidad
             total += subtotal
             if producto:
                 lista_productos.append({
@@ -106,7 +106,7 @@ def reporte_de_ventas():
     
     # Agrupar por mesa y calcular totales
     reporte_mesas = {}
-    for factura_num, factura in facturas_filtradas.items():
+    for factura in facturas_filtradas.values():
         mesa_nombre = factura["mesa"]
         if mesa_nombre not in reporte_mesas:
             reporte_mesas[mesa_nombre] = {
