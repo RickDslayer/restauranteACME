@@ -6,9 +6,9 @@ Cliente: yisus
 -----------------------------
 Productos:
 - asd
-  Cantidad: 4
+  Cantidad: 1
   Valor unitario: 2
-  Subtotal: 6
+  Subtotal: 3
 -----------------------------
-TOTAL A PAGAR: 6
+TOTAL A PAGAR: 3
 -----------------------------

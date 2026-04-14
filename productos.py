@@ -29,5 +29,4 @@ def buscar_productos(codigo):
     cod = str(codigo)
     if cod in inventario:
         return inventario[cod]
-    else:
-        print("no existen productos con ese codigo")
+        

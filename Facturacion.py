@@ -20,26 +20,28 @@ def  Facturacion():
         cliente = c.buscar_cliente(codgio_cliente)
         lista_productos = []
         while True:
-            global total
-            codigo_producto = int(input("ingrese el codigo del producto que desea ingresar: "))
-            cantidad = int(input("ingrese la cantidad que desea: "))
-            producto = p.buscar_productos(codigo_producto)
-            subtotal = (producto["valor_unitario"]+cantidad)*producto["iva"]
-            total += subtotal
-            if producto:
-                lista_productos.append({
-                    "nombre":producto["nombre"],
-                    "valor_unitario":producto["valor_unitario"],
-                    "iva":producto["iva"],
-                    "cantidad":cantidad,
-                    "subtotal":subtotal
-                })
-            continuar = input("desea seguir agregando otro producto? (s/n): ")
-            if continuar.lower() == "n":
-                break
-            elif continuar.lower() != "s":
-                print("Opción inválida. Por favor ingrese 's' o 'n'.")
-
+            try:
+                global total
+                codigo_producto = int(input("ingrese el codigo del producto que desea ingresar: "))
+                cantidad = int(input("ingrese la cantidad que desea: "))
+                producto = p.buscar_productos(codigo_producto)
+                subtotal = (producto["valor_unitario"]+cantidad)*producto["iva"]
+                total += subtotal
+                if producto:
+                    lista_productos.append({
+                        "nombre":producto["nombre"],
+                        "valor_unitario":producto["valor_unitario"],
+                        "iva":producto["iva"],
+                        "cantidad":cantidad,
+                        "subtotal":subtotal
+                    })
+                continuar = input("desea seguir agregando otro producto? (s/n): ")
+                if continuar.lower() == "n":
+                    break
+                elif continuar.lower() != "s":
+                    print("Opción inválida. Por favor ingrese 's' o 'n'.")
+            except TypeError:
+                print("error no existe el producto con ese codigo")
         facturas[contador] = {"fecha": fecha,"mesa" : mesa,"cliente": cliente,"productos": lista_productos, "total": total}
         print("\n========== FACTURA ==========")
         print(f"Factura N°: {contador}")
