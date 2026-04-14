@@ -1,0 +1,12 @@
+{
+    "1": {
+        "nombre": "asd",
+        "valor_unitario": 2,
+        "iva": 1
+    },
+    "56": {
+        "nombre": "sad",
+        "valor_unitario": 23,
+        "iva": 23
+    }
+}
