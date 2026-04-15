@@ -126,7 +126,7 @@ def reporte_de_ventas():
             reporte_mesas[mesa_nombre]["subtotal_iva"] += iva_prod
             reporte_mesas[mesa_nombre]["subtotal"] += valor_bruto + iva_prod
     
-    # Mostrar reporte en pantalla
+    # Mostrar reporte en pantall
     print("\n" + "="*100)
     print(f"REPORTE DE VENTAS - Fecha: {fecha_reporte}")
     print("="*100)
