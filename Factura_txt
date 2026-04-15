@@ -1,0 +1,42 @@
+========== FACTURA ==========
+Factura N#: 1
+Fecha: 2026-04-15
+Mesa: None
+Cliente: asd
+-----------------------------
+Productos:
+- sad
+  Cantidad: 6
+  Valor unitario: 23
+  Subtotal: 667
+-----------------------------
+TOTAL A PAGAR: 667
+-----------------------------
+========== FACTURA ==========
+Factura N#: 2
+Fecha: 2026-04-15
+Mesa: None
+Cliente: asd
+-----------------------------
+Productos:
+- asd
+  Cantidad: 2
+  Valor unitario: 2
+  Subtotal: 4
+-----------------------------
+TOTAL A PAGAR: 671
+-----------------------------
+========== FACTURA ==========
+Factura N#: 2
+Fecha: 2026-04-15
+Mesa: None
+Cliente: asd
+-----------------------------
+Productos:
+- asd
+  Cantidad: 2
+  Valor unitario: 2
+  Subtotal: 4
+-----------------------------
+TOTAL A PAGAR: 1614
+-----------------------------

@@ -6,7 +6,6 @@ import csv
 fecha_completa = datetime.now()
 fecha = fecha_completa.date()
 hora = fecha_completa.time()
-#print (f"{fecha}\n{hora}")
 facturas = {}
 contador = 0
 total = 0
@@ -61,8 +60,8 @@ def  Facturacion():
         print(f"TOTAL A PAGAR: {total}")
         seguro = input ("¿Desea guardar registro de la factura? (s/n)")
         if seguro.lower() == "s":
-            nombre_archivo = f"Factura_{contador}.txt"
-            with open (nombre_archivo, "w") as f :
+            nombre_archivo = "Factura_txt"
+            with open (nombre_archivo, "a") as f :
                 f.write("========== FACTURA ==========\n")
                 f.write(f"Factura N#: {contador}\n")
                 f.write(f"Fecha: {fecha}\n")
@@ -154,7 +153,7 @@ def reporte_de_ventas():
     if imprimir.lower() == "s":
         nombre_archivo = f"Reporte_Ventas_{fecha_reporte}.csv"
         try:
-            with open(nombre_archivo, "w", newline="") as f:
+            with open(nombre_archivo, "a", newline="") as f:
                 writer = csv.writer(f)
                 writer.writerow(["REPORTE DE VENTAS"])
                 writer.writerow([f"Fecha: {fecha_reporte}"])
