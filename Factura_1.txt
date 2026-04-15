@@ -2,13 +2,13 @@
 Factura N#: 1
 Fecha: 2026-04-14
 Mesa: None
-Cliente: yisus
+Cliente: None
 -----------------------------
 Productos:
 - asd
-  Cantidad: 1
+  Cantidad: 3
   Valor unitario: 2
-  Subtotal: 3
+  Subtotal: 5
 -----------------------------
-TOTAL A PAGAR: 3
+TOTAL A PAGAR: 5
 -----------------------------

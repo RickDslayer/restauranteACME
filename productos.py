@@ -28,5 +28,5 @@ def buscar_productos(codigo):
     inventario = cargar_productos()
     cod = str(codigo)
     if cod in inventario:
-        return inventario[cod]
+        return  inventario[cod]
         

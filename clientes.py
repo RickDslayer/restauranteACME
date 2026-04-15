@@ -20,9 +20,12 @@ def crearClientes (C,name, tel, email):
         for n , t , e in datos_clientes.values():
             print(f"Informacion del cliente:\nNombre = {n}\nCedula = {C}\nTelefono = {t}\nCorreo = {e}\n")      
     else:
-        datos_clientes[cc]= {"nombre": name , "tel": tel ,"email": email}    
+        datos_clientes[cc]= {"nombre": name , "tel": tel ,"email": email}
+        guardar_datos_clientes(datos_clientes)
 def buscar_cliente(codigo):
-    if codigo in datos_clientes:
+    datos_clientes = cargar_clientes()
+    buscar = str(codigo)
+    if buscar in datos_clientes:
         return datos_clientes[codigo]["nombre"]
     else:
         print("no existe un cliente con ese correo")                                                                                                                                                                   

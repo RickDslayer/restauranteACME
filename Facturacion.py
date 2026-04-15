@@ -16,7 +16,7 @@ def  Facturacion():
         contador += 1
         codigo_mesa = int(input("ingrese el codigo de la mesa que desea usar: "))
         mesa = m.buscar_mesa(codigo_mesa)
-        codgio_cliente = int(input("ingrese el codigo del cliente: "))
+        codgio_cliente = (input("ingrese el codigo del cliente: "))
         cliente = c.buscar_cliente(codgio_cliente)
         lista_productos = []
         while True:
